@@ -13,4 +13,15 @@
     <color name="colorAccent">#c2bdbf</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
+
+    <color name="primary">#0B3E92</color>
+    <color name="primary_dark">#062A77</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="input_background">#ECECEC</color>
+    <color name="icon_background">#20FFFFFF</color>
+    <color name="error">#B00020</color>
+    <color name="receive_message_background">#ECECEC</color>
+    <color name="sent_message_background">#1467C8</color>
+    <color name="input_message_text">#F2F3F4</color>
 </resources>

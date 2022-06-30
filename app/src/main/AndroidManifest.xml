@@ -9,7 +9,15 @@
         android:roundIcon="@drawable/instagram"
         android:supportsRtl="true"
         android:theme="@style/Theme.InstaClone">
-
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".StartActivity"
             android:exported="true">
