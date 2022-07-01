@@ -4,10 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/drawable/edit_text_background.xml" value="0.264" />
+        <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/drawable/ic_add_foreground.xml" value="0.1465" />
+        <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/drawable/ic_home_foreground.xml" value="0.1465" />
         <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/layout/activity_login.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/layout/activity_register.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/layout/activity_start.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/menu/bottom_menu.xml" value="0.2734375" />
         <entry key="app/src/main/res/drawable/button_background.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.4" />
       </map>
