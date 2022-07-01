@@ -24,4 +24,6 @@
     <color name="receive_message_background">#ECECEC</color>
     <color name="sent_message_background">#1467C8</color>
     <color name="input_message_text">#F2F3F4</color>
+
+    <color name="grey_line">#ECEAEA</color>
 </resources>
