@@ -72,7 +72,7 @@
             android:src="@drawable/instagram"
             android:id="@+id/img_added"/>
 
-        <EditText
+        <com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView
             android:id="@+id/edtDescription"
             android:background="@drawable/edt_post_background"
             android:layout_width="match_parent"
@@ -82,6 +82,9 @@
             android:layout_marginTop="60dp"
             android:hint="Description..."
             android:textColorHint="@color/secondary_text"
+            app:socialFlags="hashtag|mention"
+            app:hashtagColor="@color/green"
+            app:mentionColor="@color/blue"
             android:textColor="@color/primary_text"/>
 
     </LinearLayout>
