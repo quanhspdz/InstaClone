@@ -19,8 +19,8 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\anksk\.android\avd\Pixel_4_Android_12.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="99af6a700104" />
           </Key>
         </deviceKey>
       </Target>
@@ -28,8 +28,8 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="SERIAL_NUMBER" />
-            <value value="99af6a700104" />
+            <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="C:\Users\anksk\.android\avd\Pixel_4_Android_12.avd" />
           </Key>
         </deviceKey>
       </Target>
