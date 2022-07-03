@@ -41,6 +41,7 @@ dependencies {
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
     implementation "com.hendraanggrian.appcompat:socialview:0.2" // base library
     implementation "com.hendraanggrian.appcompat:socialview-commons:0.2" // auto-complete hashtag and mention
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
     testImplementation 'junit:junit:4.13.2'
