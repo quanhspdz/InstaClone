@@ -42,6 +42,7 @@ dependencies {
     implementation "com.hendraanggrian.appcompat:socialview:0.2" // base library
     implementation "com.hendraanggrian.appcompat:socialview-commons:0.2" // auto-complete hashtag and mention
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 
     testImplementation 'junit:junit:4.13.2'
