@@ -23,6 +23,9 @@
         <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/menu/bottom_menu.xml" value="0.2734375" />
         <entry key="app/src/main/res/drawable/button_background.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/each_tag_item.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/each_user_item.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.4" />
       </map>
     </option>
   </component>

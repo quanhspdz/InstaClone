@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.instaclone.R;
+import com.example.instaclone.adapters.HashtagAdapter;
 import com.example.instaclone.adapters.UserAdapter;
 import com.example.instaclone.models.User;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +30,7 @@ import com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SearchFragment extends Fragment {
 
@@ -36,6 +38,8 @@ public class SearchFragment extends Fragment {
     SocialAutoCompleteTextView edtSearch;
     UserAdapter userAdapter;
     List<User> listUsers;
+    List<String> listHashtags, listHashTagsCount;
+    HashtagAdapter hashtagAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,10 +60,15 @@ public class SearchFragment extends Fragment {
         userAdapter = new UserAdapter(getContext(), listUsers, true);
         recyclerViewUsers.setAdapter(userAdapter);
 
+        listHashtags = new ArrayList<>();
+        listHashTagsCount = new ArrayList<>();
+        hashtagAdapter = new HashtagAdapter(getContext(), listHashtags, listHashTagsCount);
+        recyclerViewHashtags.setAdapter(hashtagAdapter);
+
         //when user haven't type any key yet, all users will appear
         readListUsers();
 
-        //when user type something (key), show the user match with user's key
+        //when user type something (key), show the users & hashtags match with user's key
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -69,6 +78,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 searchUser(s.toString());
+                searchHashtag(s.toString());
             }
 
             @Override
@@ -77,7 +87,50 @@ public class SearchFragment extends Fragment {
             }
         });
 
+
+        //when user haven't type any key yet, all hashtags will appear
+        readListHashtags();
+
         return view;
+    }
+
+    private void searchHashtag(String key) {
+        List<String> listSearchTags = new ArrayList<>();
+        List<String> listSearchTagsCount = new ArrayList<>();
+
+        for (String tag : listHashtags) {
+            if (tag.toLowerCase().contains(key.toLowerCase())) {
+                listSearchTags.add(tag);
+                listSearchTagsCount.add(listHashTagsCount.get(listHashtags.indexOf(tag)));
+            }
+        }
+        hashtagAdapter.filter(listSearchTags, listSearchTagsCount);
+    }
+
+    private void readListHashtags() {
+        FirebaseDatabase.getInstance().getReference().child("HashTags").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (TextUtils.isEmpty(edtSearch.getText().toString())) {
+                    listHashtags.clear();
+                    listHashTagsCount.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        listHashtags.add("# " + dataSnapshot.getKey());
+                        if (dataSnapshot.getChildrenCount() > 1) {
+                            listHashTagsCount.add(dataSnapshot.getChildrenCount() + " posts");
+                        } else {
+                            listHashTagsCount.add(dataSnapshot.getChildrenCount() + " post");
+                        }
+                    }
+                    hashtagAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void searchUser(String key) {
