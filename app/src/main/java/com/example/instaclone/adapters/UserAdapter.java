@@ -66,11 +66,28 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         } else {
             holder.btnFollow.setVisibility(View.VISIBLE);
         }
+
+        holder.btnFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.btnFollow.getText().toString().equalsIgnoreCase("follow")) {
+                    FirebaseDatabase.getInstance().getReference().child("Follow")
+                            .child(firebaseUser.getUid()).child("following").child(user.getId()).setValue(true);
+                    FirebaseDatabase.getInstance().getReference().child("Follow")
+                            .child(user.getId()).child("followers").child(firebaseUser.getUid()).setValue(true);
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("Follow")
+                            .child(firebaseUser.getUid()).child("following").child(user.getId()).removeValue();
+                    FirebaseDatabase.getInstance().getReference().child("Follow")
+                            .child(user.getId()).child("followers").child(firebaseUser.getUid()).removeValue();
+                }
+            }
+        });
     }
 
     private void isFollow(String id, Button btnFollow) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Follow")
-                .child(firebaseUser.getUid());
+                .child(firebaseUser.getUid()).child("following");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
