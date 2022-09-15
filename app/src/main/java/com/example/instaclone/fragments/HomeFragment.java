@@ -96,6 +96,7 @@ public class HomeFragment extends Fragment {
                                     Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())) {
                                 listPosts.add(post);
                             }
+                            //listPosts.add(post);
                         }
 
                         postAdapter.notifyDataSetChanged();
