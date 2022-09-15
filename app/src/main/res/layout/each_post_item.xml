@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -42,11 +42,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/best_insta_text_logo"
                 android:id="@+id/img_post"
                 app:layout_constraintDimensionRatio="1:1"
@@ -111,7 +113,7 @@
             android:id="@+id/txt_author"
             android:textSize="14sp"/>
 
-        <TextView
+        <com.hendraanggrian.appcompat.widget.SocialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="description"
