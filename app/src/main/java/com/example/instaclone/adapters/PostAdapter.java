@@ -74,6 +74,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
+        //defined "Like button"'s logic
+        holder.btnLike.setTag("like");
+        holder.btnLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isLiked(holder.btnLike, post.getPostId());
+                if (holder.btnLike.getTag().equals("like")) {   //if user has not liked this post yet
+                    FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostId())
+                            .child(firebaseUser.getUid()).setValue(true);
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostId())
+                            .child(firebaseUser.getUid()).removeValue();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -104,6 +120,33 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             txtProfileName = itemView.findViewById(R.id.txt_author_profile);
             txtDescription = itemView.findViewById(R.id.txt_des);
             txtAuthor = itemView.findViewById(R.id.txt_author);
+            btnLike = itemView.findViewById(R.id.btn_like);
+            btnComment = itemView.findViewById(R.id.btn_comment);
+            btnSave = itemView.findViewById(R.id.btn_save_post);
+            btnMore = itemView.findViewById(R.id.btn_more);
+            txtNumOfComments = itemView.findViewById(R.id.number_of_comments);
+            txtNumOfLikes = itemView.findViewById(R.id.number_of_likes);
         }
+    }
+
+    public void isLiked(ImageView btnLike, String postId) {
+        FirebaseDatabase.getInstance().getReference().child("Likes").child(postId)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.child(firebaseUser.getUid()).exists()) {
+                            btnLike.setImageResource(R.drawable.ic_liked);
+                            btnLike.setTag("liked");
+                        } else {
+                            btnLike.setImageResource(R.drawable.ic_like);
+                            btnLike.setTag("like");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 }
