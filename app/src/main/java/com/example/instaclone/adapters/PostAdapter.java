@@ -1,6 +1,7 @@
 package com.example.instaclone.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.instaclone.CommentActivity;
 import com.example.instaclone.R;
+import com.example.instaclone.StartActivity;
 import com.example.instaclone.models.Post;
 import com.example.instaclone.models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hendraanggrian.appcompat.widget.SocialTextView;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Comment;
 
 import java.util.List;
 
@@ -77,6 +82,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         //defined "Like button"'s logic
         holder.btnLike.setTag("like");
+        isLiked(holder.btnLike, post.getPostId());
         holder.btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,8 +105,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                         int numberOfLikes = (int) snapshot.getChildrenCount();
                         if (numberOfLikes > 1) {
                             holder.txtNumOfLikes.setText(numberOfLikes + " likes");
-                        } else {
+                        } else if (numberOfLikes == 1) {
                             holder.txtNumOfLikes.setText(numberOfLikes + " like");
+                        } else {
+                            holder.txtNumOfLikes.setVisibility(View.GONE);
                         }
                     }
 
@@ -109,6 +117,48 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
                     }
                 });
+
+        //setup Comment button
+        holder.btnComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CommentActivity.class);
+                intent.putExtra("postId", post.getPostId());
+                intent.putExtra("authorId", post.getPublisher());
+                context.startActivity(intent);
+            }
+        });
+
+        //show number of comments
+        FirebaseDatabase.getInstance().getReference().child("Comments")
+                .child(post.getPostId()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        int numberOfComments = (int) snapshot.getChildrenCount();
+                        if (numberOfComments > 1) {
+                            holder.txtNumOfComments.setText("View all " + numberOfComments + " comments");
+                        } else if (numberOfComments == 1) {
+                            holder.txtNumOfComments.setText("View all " + numberOfComments + " comment");
+                        } else {
+                            holder.txtNumOfComments.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+        //click to number of comment textView also lead to Comment Activity
+        holder.txtNumOfComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CommentActivity.class);
+                intent.putExtra("postId", post.getPostId());
+                intent.putExtra("authorId", post.getPublisher());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

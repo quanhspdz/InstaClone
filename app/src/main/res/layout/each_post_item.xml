@@ -23,17 +23,17 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_profile"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/instagram"
-                android:id="@+id/img_profile"/>
+                android:src="@drawable/instagram" />
 
             <TextView
+                android:id="@+id/txt_author_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:id="@+id/txt_author_profile"
                 android:text="username"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -46,11 +46,11 @@
             android:layout_marginBottom="10dp">
 
             <ImageView
+                android:id="@+id/img_post"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/best_insta_text_logo"
-                android:id="@+id/img_post"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +84,7 @@
                 android:src="@drawable/ic_chat_empty" />
 
             <ImageView
+                android:id="@+id/btn_save_post"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
@@ -91,43 +92,40 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/btn_save_post"
                 android:src="@drawable/ic_save" />
 
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/number_of_likes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="69 likes"
-            android:textColor="@color/colorAccent"
-            android:id="@+id/number_of_likes"/>
+            android:textColor="@color/colorAccent" />
 
         <TextView
+            android:id="@+id/txt_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="author"
             android:layout_marginStart="10dp"
-            android:textStyle="bold"
-            android:id="@+id/txt_author"
-            android:textSize="14sp"/>
+            android:text="author"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <com.hendraanggrian.appcompat.widget.SocialTextView
+            android:id="@+id/txt_des"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="description"
             android:layout_marginStart="10dp"
-            android:id="@+id/txt_des"
-            android:textSize="14sp"/>
+            android:text="description"
+            android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/number_of_comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="96 comments"
-            android:textColor="@color/colorAccent"
-            android:id="@+id/number_of_comments"/>
+            android:textColor="@color/colorAccent" />
 
 
     </LinearLayout>
