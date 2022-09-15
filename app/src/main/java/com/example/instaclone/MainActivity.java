@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.instaclone.fragments.AddFragment;
 import com.example.instaclone.fragments.HomeFragment;
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottom_nav;
     private Fragment selectorFragment;
+    private Fragment homeFragment, searchFragment, addFragment,
+            notificationFragment, profileFragment;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,40 +32,66 @@ public class MainActivity extends AppCompatActivity {
 
         bottom_nav = findViewById(R.id.bottom_nav);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        //create a fragment for each tab in memory, and saves them as a local variable in the activity:
+        homeFragment = new HomeFragment();
+        searchFragment = new SearchFragment();
+        addFragment = new AddFragment();
+        notificationFragment = new NotificationFragment();
+        profileFragment = new ProfileFragment();
 
+        fragmentManager = getSupportFragmentManager();
+        selectorFragment = homeFragment;
+
+//        add all 5 fragments to the manager, but hide 4 of them, so only HomeFragment will be visible:
+        fragmentManager.beginTransaction().add(R.id.fragment_container, searchFragment, "search")
+                .hide(searchFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.fragment_container, addFragment, "add")
+                .hide(addFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.fragment_container, notificationFragment, "notification")
+                .hide(notificationFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.fragment_container, profileFragment, "profile")
+                .hide(profileFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.fragment_container, homeFragment, "home").commit();
+
+        //when user select bottom nav: hide current fragment and show selected fragment
         bottom_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()) {
                     case R.id.nav_home: {
-                        selectorFragment = new HomeFragment();
+                        fragmentManager.beginTransaction().hide(selectorFragment)
+                                .show(homeFragment).commit();
+                        selectorFragment = homeFragment;
                         break;
                     }
                     case R.id.nav_search: {
-                        selectorFragment = new SearchFragment();
+                        fragmentManager.beginTransaction().hide(selectorFragment)
+                                .show(searchFragment).commit();
+                        selectorFragment = searchFragment;
                         break;
                     }
                     case R.id.nav_add: {
-                        selectorFragment = new AddFragment();
+                        fragmentManager.beginTransaction().hide(selectorFragment)
+                                .show(addFragment).commit();
+                        selectorFragment = addFragment;
                         Intent intent = new Intent(MainActivity.this, PostActivity.class);
                         startActivity(intent);
                         break;
                     }
                     case R.id.nav_heart: {
-                        selectorFragment = new NotificationFragment();
+                        fragmentManager.beginTransaction().hide(selectorFragment)
+                                .show(notificationFragment).commit();
+                        selectorFragment = notificationFragment;
                         break;
                     }
                     case R.id.nav_profile: {
-                        selectorFragment = new ProfileFragment();
+                        fragmentManager.beginTransaction().hide(selectorFragment)
+                                .show(profileFragment).commit();
+                        selectorFragment = profileFragment;
                         break;
                     }
                 }
-                if (selectorFragment != null) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectorFragment).commit();
-                }
-
                 return true;
             }
         });

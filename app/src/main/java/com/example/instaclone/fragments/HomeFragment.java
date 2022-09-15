@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.instaclone.MainActivity;
 import com.example.instaclone.R;
 import com.example.instaclone.adapters.PostAdapter;
 import com.example.instaclone.models.Post;
@@ -41,8 +42,8 @@ public class HomeFragment extends Fragment {
 
         recyclerViewPosts = view.findViewById(R.id.recycler_view_posts);
         recyclerViewPosts.setHasFixedSize(true);
-        recyclerViewStories = view.findViewById(R.id.recycler_view_stories);
-        recyclerViewStories.setHasFixedSize(true);
+//        recyclerViewStories = view.findViewById(R.id.recycler_view_stories);
+//        recyclerViewStories.setHasFixedSize(true);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setStackFromEnd(true);
@@ -91,6 +92,7 @@ public class HomeFragment extends Fragment {
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             Post post = dataSnapshot.getValue(Post.class);
                             assert post != null;
+                            //just showing the posts of whom following by current user
                             if (followingList.containsKey(post.getPublisher())
                                 || TextUtils.equals(post.getPublisher(),
                                     Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())) {

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.instaclone.MainActivity;
 import com.example.instaclone.R;
 import com.example.instaclone.adapters.HashtagAdapter;
 import com.example.instaclone.adapters.UserAdapter;

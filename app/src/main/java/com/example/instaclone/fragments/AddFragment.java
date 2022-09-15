@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.instaclone.MainActivity;
 import com.example.instaclone.R;
 
 public class AddFragment extends Fragment {
