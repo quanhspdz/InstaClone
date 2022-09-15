@@ -29,5 +29,7 @@
     <color name="sent_message_background">#1467C8</color>
     <color name="input_message_text">#F2F3F4</color>
 
+    <color name="blur_blue">#AFEEEE</color>
+
     <color name="grey_line">#ECEAEA</color>
 </resources>

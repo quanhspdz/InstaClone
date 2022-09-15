@@ -74,6 +74,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
+
         //defined "Like button"'s logic
         holder.btnLike.setTag("like");
         holder.btnLike.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +90,25 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 }
             }
         });
+
+        //setup textView to show number of likes
+        FirebaseDatabase.getInstance().getReference().child("Likes")
+                .child(post.getPostId()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        int numberOfLikes = (int) snapshot.getChildrenCount();
+                        if (numberOfLikes > 1) {
+                            holder.txtNumOfLikes.setText(numberOfLikes + " likes");
+                        } else {
+                            holder.txtNumOfLikes.setText(numberOfLikes + " like");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
     }
 

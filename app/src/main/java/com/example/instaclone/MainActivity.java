@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentManager.beginTransaction().hide(selectorFragment)
                                 .show(addFragment).commit();
                         selectorFragment = addFragment;
-                        Intent intent = new Intent(MainActivity.this, PostActivity.class);
+                        Intent intent = new Intent(MainActivity.this, CommentActivity.class);
                         startActivity(intent);
                         break;
                     }

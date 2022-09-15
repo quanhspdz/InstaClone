@@ -22,8 +22,10 @@
         <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/layout/fragment_search.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/anksk/AndroidProjects/InstaClone/app/src/main/res/menu/bottom_menu.xml" value="0.2734375" />
         <entry key="app/src/main/res/drawable/button_background.xml" value="0.4" />
+        <entry key="app/src/main/res/drawable/color_cursor.xml" value="0.2475" />
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.2475" />
         <entry key="app/src/main/res/drawable/ic_liked.xml" value="0.2475" />
+        <entry key="app/src/main/res/layout/activity_comment.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/activity_post.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.4" />
