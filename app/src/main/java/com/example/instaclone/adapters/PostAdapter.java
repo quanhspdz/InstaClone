@@ -104,8 +104,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         int numberOfLikes = (int) snapshot.getChildrenCount();
                         if (numberOfLikes > 1) {
+                            holder.txtNumOfLikes.setVisibility(View.VISIBLE);
                             holder.txtNumOfLikes.setText(numberOfLikes + " likes");
                         } else if (numberOfLikes == 1) {
+                            holder.txtNumOfLikes.setVisibility(View.VISIBLE);
                             holder.txtNumOfLikes.setText(numberOfLikes + " like");
                         } else {
                             holder.txtNumOfLikes.setVisibility(View.GONE);
@@ -136,8 +138,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         int numberOfComments = (int) snapshot.getChildrenCount();
                         if (numberOfComments > 1) {
+                            holder.txtNumOfComments.setVisibility(View.VISIBLE);
                             holder.txtNumOfComments.setText("View all " + numberOfComments + " comments");
                         } else if (numberOfComments == 1) {
+                            holder.txtNumOfComments.setVisibility(View.VISIBLE);
                             holder.txtNumOfComments.setText("View all " + numberOfComments + " comment");
                         } else {
                             holder.txtNumOfComments.setVisibility(View.GONE);
