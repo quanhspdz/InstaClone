@@ -60,9 +60,17 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.nav_home: {
-                        fragmentManager.beginTransaction().hide(selectorFragment)
-                                .show(homeFragment).commit();
-                        selectorFragment = homeFragment;
+                        //when user click Home nav button in HomeFragment, it will reload this fragment
+                        if (selectorFragment == homeFragment) {
+                            fragmentManager.beginTransaction()
+                                    .detach(selectorFragment).commit();
+                            fragmentManager.beginTransaction()
+                                    .attach(selectorFragment).commit();
+                        } else {
+                            fragmentManager.beginTransaction().hide(selectorFragment)
+                                    .show(homeFragment).commit();
+                            selectorFragment = homeFragment;
+                        }
                         break;
                     }
                     case R.id.nav_search: {

@@ -3,6 +3,8 @@ package com.example.instaclone.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +13,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.instaclone.MainActivity;
 import com.example.instaclone.R;
@@ -32,6 +36,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerViewPosts, recyclerViewStories;
     private PostAdapter postAdapter;
     private List<Post> listPosts;
+    private ImageView imgLogo;
+    LinearLayoutManager linearLayoutManager;
 
     HashMap<String, Boolean> followingList;
 
@@ -40,12 +46,13 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        imgLogo = view.findViewById(R.id.imgLogo);
         recyclerViewPosts = view.findViewById(R.id.recycler_view_posts);
         recyclerViewPosts.setHasFixedSize(true);
 //        recyclerViewStories = view.findViewById(R.id.recycler_view_stories);
 //        recyclerViewStories.setHasFixedSize(true);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true);
         recyclerViewPosts.setLayoutManager(linearLayoutManager);
@@ -53,6 +60,7 @@ public class HomeFragment extends Fragment {
         listPosts = new ArrayList<>();
         postAdapter = new PostAdapter(getContext(), listPosts);
         recyclerViewPosts.setAdapter(postAdapter);
+       // ViewCompat.setNestedScrollingEnabled(recyclerViewPosts, false);
 
         followingList = new HashMap<>();
 
