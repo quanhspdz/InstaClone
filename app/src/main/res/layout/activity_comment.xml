@@ -14,7 +14,7 @@
         android:background="?android:attr/windowBackground">
 
         <TextView
-            android:id="@+id/txtBack"
+            android:id="@+id/txt_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Comments"
@@ -61,8 +61,8 @@
             android:background="@android:color/transparent"
             android:hint="Add a comment..."
             android:textColor="@color/colorPrimaryDark"
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:textColorHint="@color/colorAccent" />
+            android:textColorHint="@color/colorAccent"
+            android:textCursorDrawable="@drawable/color_cursor" />
 
         <TextView
             android:id="@+id/btn_post"

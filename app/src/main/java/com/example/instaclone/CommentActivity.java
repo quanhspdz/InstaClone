@@ -3,6 +3,8 @@ package com.example.instaclone;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.instaclone.R;
+import com.example.instaclone.adapters.CommentAdapter;
+import com.example.instaclone.models.Comment;
 import com.example.instaclone.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,7 +31,9 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -37,6 +43,9 @@ public class CommentActivity extends AppCompatActivity {
     private EditText edtComment;
     private CircleImageView imgProfile;
     private TextView txtPost;
+    private RecyclerView recyclerViewComments;
+    private List<Comment> listComments;
+    private CommentAdapter commentAdapter;
 
     private String authorId, postId;
 
@@ -47,19 +56,28 @@ public class CommentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
+        //receive authorId and postId from HomeFragment
+        Intent intent = getIntent();
+        authorId = intent.getStringExtra("authorId");
+        postId = intent.getStringExtra("postId");
+
         edtComment = findViewById(R.id.edt_comment);
         imgProfile = findViewById(R.id.img_profile);
         txtPost = findViewById(R.id.btn_post);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        //setup recyclerView to show comments
+        recyclerViewComments = findViewById(R.id.recyclerView_comments);
+        recyclerViewComments.setHasFixedSize(true);
+        listComments = new ArrayList<>();
+        commentAdapter = new CommentAdapter(getApplicationContext(), listComments);
+        recyclerViewComments.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerViewComments.setAdapter(commentAdapter);
+        showAllComments();
+
         //change color of the Post button to blur when comment is empty
         blurPostButton();
-
-        //receive authorId and postId from HomeFragment
-        Intent intent = getIntent();
-        authorId = intent.getStringExtra("authorId");
-        postId = intent.getStringExtra("postId");
 
         //get current user info
         getCurrentUserInfo();
@@ -77,6 +95,27 @@ public class CommentActivity extends AppCompatActivity {
         });
     }
 
+    private void showAllComments() {
+        //firstly, let get all comments of this post from Firebase
+        FirebaseDatabase.getInstance().getReference().child("Comments")
+                .child(postId).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        listComments.clear();
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Comment comment = dataSnapshot.getValue(Comment.class);
+                            listComments.add(comment);
+                        }
+                        commentAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
     private void postThisComment(String comment) {
         HashMap<String, Object> data = new HashMap<>();
         data.put("comment", comment);
@@ -86,7 +125,6 @@ public class CommentActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(CommentActivity.this, "Comment added!", Toast.LENGTH_SHORT).show();
                             edtComment.setText("");
                         } else {
                             Toast.makeText(CommentActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
