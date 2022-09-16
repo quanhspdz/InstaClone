@@ -12,6 +12,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +48,7 @@ public class CommentActivity extends AppCompatActivity {
     private RecyclerView recyclerViewComments;
     private List<Comment> listComments;
     private CommentAdapter commentAdapter;
+    private ImageView btnBack;
 
     private String authorId, postId;
 
@@ -66,6 +69,15 @@ public class CommentActivity extends AppCompatActivity {
         txtPost = findViewById(R.id.btn_post);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        //setup back button
+        btnBack = findViewById(R.id.layout_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         //setup recyclerView to show comments
         recyclerViewComments = findViewById(R.id.recyclerView_comments);
