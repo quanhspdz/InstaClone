@@ -24,8 +24,12 @@
         <entry key="app/src/main/res/drawable/button_background.xml" value="0.4" />
         <entry key="app/src/main/res/drawable/color_cursor.xml" value="0.2475" />
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.2475" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.196" />
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.2475" />
+        <entry key="app/src/main/res/drawable/ic_grid_selected.xml" value="0.1955" />
         <entry key="app/src/main/res/drawable/ic_liked.xml" value="0.2475" />
+        <entry key="app/src/main/res/drawable/ic_my_posts.xml" value="0.1955" />
+        <entry key="app/src/main/res/drawable/ic_save_blur.xml" value="0.1955" />
         <entry key="app/src/main/res/layout/activity_comment.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32708333333333334" />
@@ -36,7 +40,7 @@
         <entry key="app/src/main/res/layout/each_tag_item.xml" value="0.4" />
         <entry key="app/src/main/res/layout/each_user_item.xml" value="0.4" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.32708333333333334" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.4" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.4" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.32708333333333334" />
       </map>
