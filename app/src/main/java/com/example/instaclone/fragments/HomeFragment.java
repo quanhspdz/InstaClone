@@ -8,6 +8,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -42,6 +43,7 @@ public class HomeFragment extends Fragment {
     private ImageView imgLogo;
     public static NestedScrollView nestedScrollView;
     private BottomNavigationView bottom_nav;
+    private SwipeRefreshLayout refreshLayout;
     LinearLayoutManager linearLayoutManager;
 
     HashMap<String, Boolean> followingList;
@@ -53,6 +55,8 @@ public class HomeFragment extends Fragment {
 
         imgLogo = view.findViewById(R.id.imgLogo);
         nestedScrollView = view.findViewById(R.id.nest_view);
+        refreshLayout = view.findViewById(R.id.layout_refresh);
+
         recyclerViewPosts = view.findViewById(R.id.recycler_view_posts);
         recyclerViewPosts.setHasFixedSize(true);
 //        recyclerViewStories = view.findViewById(R.id.recycler_view_stories);
@@ -78,6 +82,10 @@ public class HomeFragment extends Fragment {
                 nestedScrollView.smoothScrollTo(0, 0);
             }
         });
+
+        //setup swipe-to-refresh-layout
+        refreshLayout.setRefreshing(false);
+        refreshLayout.setEnabled(false);
 
         return view;
     }
