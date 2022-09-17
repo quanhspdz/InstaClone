@@ -19,11 +19,12 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottom_nav;
+    public static BottomNavigationView bottom_nav;
     private Fragment selectorFragment;
     private Fragment homeFragment, searchFragment, addFragment,
             notificationFragment, profileFragment;
     private FragmentManager fragmentManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_home: {
                         //when user click Home nav button in HomeFragment, it will reload this fragment
                         if (selectorFragment == homeFragment) {
-                            //but this can cause app crashing so don't use it
-//                            fragmentManager.beginTransaction()
-//                                    .detach(selectorFragment).commit();
-//                            fragmentManager.beginTransaction()
-//                                    .attach(selectorFragment).commit();
+                            HomeFragment.nestedScrollView.smoothScrollTo(0, 0);
                         } else {
                             fragmentManager.beginTransaction().hide(selectorFragment)
                                     .show(homeFragment).commit();

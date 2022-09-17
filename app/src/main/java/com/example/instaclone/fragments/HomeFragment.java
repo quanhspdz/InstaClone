@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import com.example.instaclone.R;
 import com.example.instaclone.adapters.PostAdapter;
 import com.example.instaclone.models.Post;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,7 +40,7 @@ public class HomeFragment extends Fragment {
     private PostAdapter postAdapter;
     private List<Post> listPosts;
     private ImageView imgLogo;
-    private NestedScrollView nestedScrollView;
+    public static NestedScrollView nestedScrollView;
     private BottomNavigationView bottom_nav;
     LinearLayoutManager linearLayoutManager;
 
