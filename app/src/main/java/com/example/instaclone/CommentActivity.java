@@ -119,6 +119,7 @@ public class CommentActivity extends AppCompatActivity {
                             listComments.add(comment);
                         }
                         commentAdapter.notifyDataSetChanged();
+                        recyclerViewComments.smoothScrollToPosition(listComments.size() - 1);
                     }
 
                     @Override

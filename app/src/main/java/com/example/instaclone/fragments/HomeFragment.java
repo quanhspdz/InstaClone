@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment {
         imgLogo = view.findViewById(R.id.imgLogo);
         nestedScrollView = view.findViewById(R.id.nest_view);
         refreshLayout = view.findViewById(R.id.layout_refresh);
+        nestedScrollView.setNestedScrollingEnabled(false);
 
         recyclerViewPosts = view.findViewById(R.id.recycler_view_posts);
         recyclerViewPosts.setHasFixedSize(true);
