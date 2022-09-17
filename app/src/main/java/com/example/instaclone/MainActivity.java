@@ -62,10 +62,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_home: {
                         //when user click Home nav button in HomeFragment, it will reload this fragment
                         if (selectorFragment == homeFragment) {
-                            fragmentManager.beginTransaction()
-                                    .detach(selectorFragment).commit();
-                            fragmentManager.beginTransaction()
-                                    .attach(selectorFragment).commit();
+                            //but this can cause app crashing so don't use it
+//                            fragmentManager.beginTransaction()
+//                                    .detach(selectorFragment).commit();
+//                            fragmentManager.beginTransaction()
+//                                    .attach(selectorFragment).commit();
                         } else {
                             fragmentManager.beginTransaction().hide(selectorFragment)
                                     .show(homeFragment).commit();

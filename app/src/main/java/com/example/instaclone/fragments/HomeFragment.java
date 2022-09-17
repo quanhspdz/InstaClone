@@ -20,6 +20,7 @@ import com.example.instaclone.MainActivity;
 import com.example.instaclone.R;
 import com.example.instaclone.adapters.PostAdapter;
 import com.example.instaclone.models.Post;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,6 +38,8 @@ public class HomeFragment extends Fragment {
     private PostAdapter postAdapter;
     private List<Post> listPosts;
     private ImageView imgLogo;
+    private NestedScrollView nestedScrollView;
+    private BottomNavigationView bottom_nav;
     LinearLayoutManager linearLayoutManager;
 
     HashMap<String, Boolean> followingList;
@@ -47,7 +50,9 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         imgLogo = view.findViewById(R.id.imgLogo);
+        nestedScrollView = view.findViewById(R.id.nest_view);
         recyclerViewPosts = view.findViewById(R.id.recycler_view_posts);
+        bottom_nav = view.findViewById(R.id.bottom_nav);
         recyclerViewPosts.setHasFixedSize(true);
 //        recyclerViewStories = view.findViewById(R.id.recycler_view_stories);
 //        recyclerViewStories.setHasFixedSize(true);
@@ -60,11 +65,23 @@ public class HomeFragment extends Fragment {
         listPosts = new ArrayList<>();
         postAdapter = new PostAdapter(getContext(), listPosts);
         recyclerViewPosts.setAdapter(postAdapter);
-       // ViewCompat.setNestedScrollingEnabled(recyclerViewPosts, false);
 
         followingList = new HashMap<>();
 
         checkFollowingUsers();
+
+        imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nestedScrollView.smoothScrollTo(0, 0);
+            }
+        });
+        bottom_nav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "hehe", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }
