@@ -103,7 +103,7 @@ public class ProfileFragment extends Fragment {
                        if (numberOfFollowers > 1) {
                            txtFollowers.setText("Followers");
                        } else {
-                           txtFollowers.setText("Followers");
+                           txtFollowers.setText("Follower");
                        }
                    }
 
@@ -142,7 +142,7 @@ public class ProfileFragment extends Fragment {
                         }
                         txtNumOfPosts.setText(numberOfPosts + "");
 
-                        if (numberOfPosts> 1) {
+                        if (numberOfPosts > 1) {
                             txtPosts.setText("Posts");
                         } else {
                             txtPosts.setText("Post");
