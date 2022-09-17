@@ -52,7 +52,6 @@ public class HomeFragment extends Fragment {
         imgLogo = view.findViewById(R.id.imgLogo);
         nestedScrollView = view.findViewById(R.id.nest_view);
         recyclerViewPosts = view.findViewById(R.id.recycler_view_posts);
-        bottom_nav = view.findViewById(R.id.bottom_nav);
         recyclerViewPosts.setHasFixedSize(true);
 //        recyclerViewStories = view.findViewById(R.id.recycler_view_stories);
 //        recyclerViewStories.setHasFixedSize(true);
@@ -75,12 +74,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 nestedScrollView.smoothScrollTo(0, 0);
-            }
-        });
-        bottom_nav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "hehe", Toast.LENGTH_SHORT).show();
             }
         });
 
