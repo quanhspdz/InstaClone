@@ -70,6 +70,7 @@ public class HomeFragment extends Fragment {
 
         checkFollowingUsers();
 
+        //recycler view scroll to top
         imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
