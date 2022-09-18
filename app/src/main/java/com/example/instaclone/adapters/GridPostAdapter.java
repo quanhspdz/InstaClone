@@ -40,7 +40,8 @@ public class GridPostAdapter extends RecyclerView.Adapter<GridPostAdapter.ViewHo
         if (post.getImageUrl().equals("default")) {
             holder.imgPost.setImageResource(R.drawable.instagram);
         } else {
-            Picasso.get().load(post.getImageUrl()).into(holder.imgPost);
+            //Picasso.get().load(post.getImageUrl()).into(holder.imgPost);
+            Picasso.get().load(post.getImageUrl()).resize(1000, 1000).centerCrop().into(holder.imgPost);
         }
     }
 

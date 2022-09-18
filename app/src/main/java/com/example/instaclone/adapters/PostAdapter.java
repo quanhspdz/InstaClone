@@ -50,7 +50,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         Post post = listPosts.get(position);
+
         Picasso.get().load(post.getImageUrl()).into(holder.imgPost);
+        if (post.getImageUrl().equals("default")) {
+            holder.imgPost.setImageResource(R.drawable.instagram);
+        } else {
+            Picasso.get().load(post.getImageUrl())
+                    .resize(1000, 1000)
+                    .centerCrop()
+                    .into(holder.imgPost);
+        }
+
         holder.txtDescription.setText(post.getDescriptions());
 
         FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher())

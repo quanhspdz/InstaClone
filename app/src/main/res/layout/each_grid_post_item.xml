@@ -9,8 +9,11 @@
         android:id="@+id/img_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/instagram"
-        android:layout_margin = "1dp"/>
+        android:src="@drawable/instagram" />
 
 </net.simplyadvanced.widget.SquareRelativeLayout>
