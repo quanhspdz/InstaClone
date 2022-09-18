@@ -61,7 +61,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     .into(holder.imgPost);
         }
 
-        holder.txtDescription.setText(post.getDescriptions());
+        if (post.getDescriptions().equals("")) {
+            holder.txtDescription.setVisibility(View.GONE);
+        } else {
+            holder.txtDescription.setVisibility(View.VISIBLE);
+            holder.txtDescription.setText(post.getDescriptions());
+        }
 
         FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher())
                 .addValueEventListener(new ValueEventListener() {
@@ -92,7 +97,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isLiked(holder.btnLike, post.getPostId());
                 if (holder.btnLike.getTag().equals("like")) {   //if user has not liked this post yet
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostId())
                             .child(firebaseUser.getUid()).setValue(true);
@@ -170,6 +174,56 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
+        //setup Save Button
+        holder.btnSave.setTag("save");
+        isSaved(holder.btnSave, post.getPostId());
+        setSaveButtonListener(holder.btnSave, post.getPostId());
+
+    }
+
+    private void isSaved(ImageView btnSave, String postId) {
+        //this method check if the post is already saved
+        FirebaseDatabase.getInstance().getReference()
+                .child("SavedPosts").child(firebaseUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.child(postId).exists()) {
+                            //this mean this post has been already saved by user
+                            btnSave.setTag("saved");
+                            btnSave.setImageResource(R.drawable.ic_saved);
+                        } else {
+                            btnSave.setTag("save");
+                            btnSave.setImageResource(R.drawable.ic_save);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    private void setSaveButtonListener(ImageView btnSave, String postId) {
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (btnSave.getTag().equals("saved")) {
+                    //this mean user want to unsaved this post
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("SavedPosts")
+                            .child(firebaseUser.getUid())
+                            .child(postId).removeValue();
+                } else {
+                    //this mean user want to save this post
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("SavedPosts")
+                            .child(firebaseUser.getUid())
+                            .child(postId).setValue(true);
+                }
+            }
+        });
     }
 
     @Override
