@@ -6,13 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.arch.core.executor.DefaultTaskExecutor;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instaclone.R;
+import com.example.instaclone.adapters.GridPostAdapter;
 import com.example.instaclone.models.Post;
 import com.example.instaclone.models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +25,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -31,6 +38,10 @@ public class ProfileFragment extends Fragment {
     private AppCompatButton btnEditProfile;
     private ImageButton btnMyPosts, btnSavedPosts;
     private RecyclerView recyclerViewMyPost, recyclerViewSavedPosts;
+
+    private GridPostAdapter myPostsAdapter, savedPostedAdapter;
+    private List<Post> listMyPosts, listSavePosts;
+    private GridLayoutManager gridLayoutManager;
 
     private String userId;
 
@@ -56,10 +67,21 @@ public class ProfileFragment extends Fragment {
 
         userId = FirebaseAuth.getInstance().getUid();
 
+        listMyPosts = new ArrayList<>();
+        listSavePosts = new ArrayList<>();
+
+        setupRecyclerView();
         setUserProfileData();
 
-
         return view;
+    }
+
+    private void setupRecyclerView() {
+        myPostsAdapter = new GridPostAdapter(getContext(), listMyPosts);
+        recyclerViewMyPost.setHasFixedSize(true);
+        recyclerViewMyPost.setAdapter(myPostsAdapter);
+        gridLayoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
+        recyclerViewMyPost.setLayoutManager(gridLayoutManager);
     }
 
     private void setUserProfileData() {
@@ -133,10 +155,13 @@ public class ProfileFragment extends Fragment {
                             Post post = dataSnapshot.getValue(Post.class);
                             assert post != null;
                             if (post.getPublisher().equals(userId)) {
+                                listMyPosts.add(post);
                                 numberOfPosts++;
                             }
                         }
                         txtNumOfPosts.setText(numberOfPosts + "");
+                        reverseListOfPosts();
+                        myPostsAdapter.notifyDataSetChanged();
 
                         if (numberOfPosts > 1) {
                             txtPosts.setText("Posts");
@@ -150,5 +175,13 @@ public class ProfileFragment extends Fragment {
 
                     }
                 });
+    }
+
+    private void reverseListOfPosts() {
+        List<Post> tempList = new ArrayList<>(listMyPosts);
+        listMyPosts.clear();
+        for(int i = tempList.size() - 1; i >= 0; i--) {
+            listMyPosts.add(tempList.get(i));
+        }
     }
 }

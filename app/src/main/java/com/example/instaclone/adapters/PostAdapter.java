@@ -2,7 +2,6 @@ package com.example.instaclone.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.instaclone.CommentActivity;
+import com.example.instaclone.activities.CommentActivity;
 import com.example.instaclone.R;
-import com.example.instaclone.StartActivity;
 import com.example.instaclone.models.Post;
 import com.example.instaclone.models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,8 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hendraanggrian.appcompat.widget.SocialTextView;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Comment;
 
 import java.util.List;
 
