@@ -173,6 +173,7 @@
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:id="@+id/frame_myPosts"
             android:layout_weight="1">
 
             <ImageButton
@@ -188,6 +189,7 @@
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:id="@+id/frame_savedPosts"
             android:layout_weight="1">
 
             <ImageButton
