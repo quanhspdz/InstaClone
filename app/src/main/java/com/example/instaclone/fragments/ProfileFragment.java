@@ -232,7 +232,10 @@ public class ProfileFragment extends Fragment {
                         if (user.getImageUrl().equals("default")) {
                            imgProfile.setImageResource(R.drawable.instagram);
                         } else {
-                            Picasso.get().load(user.getImageUrl()).into(imgProfile);
+                            Picasso.get().load(user.getImageUrl())
+                                    .resize(1000, 1000)
+                                    .centerCrop()
+                                    .into(imgProfile);
                         }
                     }
 

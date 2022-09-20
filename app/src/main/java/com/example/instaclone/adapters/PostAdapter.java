@@ -51,7 +51,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         Post post = listPosts.get(position);
 
-        Picasso.get().load(post.getImageUrl()).into(holder.imgPost);
         if (post.getImageUrl().equals("default")) {
             holder.imgPost.setImageResource(R.drawable.instagram);
         } else {
@@ -78,7 +77,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 if (user.getImageUrl().equals("default")) {
                     holder.imgProfile.setImageResource(R.drawable.instagram);
                 } else {
-                    Picasso.get().load(user.getImageUrl()).into(holder.imgProfile);
+                    Picasso.get().load(post.getImageUrl())
+                            .resize(1000, 1000)
+                            .centerCrop()
+                            .into(holder.imgProfile);
                 }
                 holder.txtProfileName.setText(user.getUsername());
                 holder.txtAuthor.setText(user.getUsername());
