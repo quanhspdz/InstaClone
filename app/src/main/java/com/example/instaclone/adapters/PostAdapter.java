@@ -77,7 +77,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 if (user.getImageUrl().equals("default")) {
                     holder.imgProfile.setImageResource(R.drawable.instagram);
                 } else {
-                    Picasso.get().load(post.getImageUrl())
+                    Picasso.get().load(user.getImageUrl())
                             .resize(1000, 1000)
                             .centerCrop()
                             .into(holder.imgProfile);
