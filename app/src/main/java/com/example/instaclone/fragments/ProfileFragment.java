@@ -1,5 +1,6 @@
 package com.example.instaclone.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instaclone.R;
+import com.example.instaclone.activities.EditProfileActivity;
 import com.example.instaclone.adapters.GridPostAdapter;
 import com.example.instaclone.models.Post;
 import com.example.instaclone.models.User;
@@ -83,8 +85,19 @@ public class ProfileFragment extends Fragment {
 
         setupRecyclerViewMyPosts();
         setUserProfileData();
+        setEditProfileButtonListener();
 
         return view;
+    }
+
+    private void setEditProfileButtonListener() {
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupSwitchButton() {

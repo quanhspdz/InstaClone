@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InstaClone">
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".activities.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".activities.CommentActivity"

@@ -40,10 +40,11 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_done"
-                android:scaleType="fitXY"
+                android:layout_marginEnd="15dp"
                 android:background="@color/white"
-                android:layout_marginEnd="15dp"/>
+                android:id="@+id/btn_done"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_done" />
 
         </RelativeLayout>
 
@@ -62,16 +63,17 @@
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/instagram" />
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/img_profile"
-            android:text="Change profile photo"
-            android:textSize="18sp"
-            android:textColor="@color/blue"
+            android:id="@+id/txt_change_profile"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:text="Change profile photo"
+            android:textColor="@color/blue"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
@@ -97,7 +99,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="Nguyen Quang Anh"
                 android:backgroundTint="@color/colorAccent"
                 android:textColor="@color/primary_text"
                 android:id="@+id/edtName"/>
@@ -119,7 +120,6 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="quanhspdz"
                 android:textColor="@color/primary_text"
                 android:backgroundTint="@color/colorAccent"
                 android:textSize="18sp"
