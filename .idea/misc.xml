@@ -27,11 +27,13 @@
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.2475" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.196" />
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.2475" />
+        <entry key="app/src/main/res/drawable/ic_done.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/ic_grid_selected.xml" value="0.1955" />
         <entry key="app/src/main/res/drawable/ic_liked.xml" value="0.2475" />
         <entry key="app/src/main/res/drawable/ic_my_posts.xml" value="0.1955" />
         <entry key="app/src/main/res/drawable/ic_save_blur.xml" value="0.1955" />
         <entry key="app/src/main/res/layout/activity_comment.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/activity_post.xml" value="0.32708333333333334" />
