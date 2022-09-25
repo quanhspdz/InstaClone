@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activities.RegisterActivity"
     android:background="@color/white"
-    android:padding="12dp">
+    android:padding="25dp">
 
     <ImageView
         android:id="@+id/img_insta_logo"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:src="@drawable/best_insta_text_logo"
+        android:src="@drawable/ic_instagram_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -94,7 +94,7 @@
         android:layout_marginTop="35dp"
         android:background="@drawable/button_background"
         android:text="Register"
-        android:textColor="@color/primary_text"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
