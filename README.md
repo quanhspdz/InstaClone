@@ -40,4 +40,4 @@ File cài đặt (APK):
 </p>
 
 - Chỉnh sửa Profile:
-  <img src="https://user-images.githubusercontent.com/81352730/216765123-91ec994b-eb04-4c3f-ab66-706811f7cd2e.png" width="300" height="600">
+ <img src="https://user-images.githubusercontent.com/81352730/216765123-91ec994b-eb04-4c3f-ab66-706811f7cd2e.png" width="300" height="600">
